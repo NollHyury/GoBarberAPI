@@ -1,11 +1,11 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateAppointments1587400928723 implements MigrationInterface {
+export default class CreateUsers1587506095117 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
       await queryRunner.createTable(
         new Table({
-          name: 'appointments',
+          name: 'users',
           columns: [
             {
               name: 'id',
@@ -15,12 +15,18 @@ export class CreateAppointments1587400928723 implements MigrationInterface {
               default: 'uuid_generate_v4()',
             },
             {
-              name: 'provider',
+              name: 'name',
               type: 'varchar',
+
             },
             {
-              name: 'date',
-              type: 'timestamp with time zone',
+              name: 'email',
+              type: 'varchar',
+              isUnique: true,
+            },
+            {
+              name: 'password',
+              type: 'varchar',
             },
             {
               name: 'created_at',
@@ -38,18 +44,7 @@ export class CreateAppointments1587400928723 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-      await queryRunner.dropTable('appointments')
+      await queryRunner.dropTable('users')
     }
 
 }
-
-
-/**
- * Linha do tempo
- *
- * 1ª semana : Agendamentos
- * 2ª semana : Usuarios
- * (NOVO DEV) : 3ª Edição Agendamentos
- * 4ª semana : Compras
- * Evita que os bancos de dados fiquem desatualizados
- */
