@@ -1,6 +1,7 @@
 import {getRepository} from 'typeorm';
 import {compare} from 'bcryptjs'
 import {sign} from 'jsonwebtoken';
+import authConfig from '../config/auth';
 
 import User from '../models/User'
 
@@ -34,9 +35,9 @@ export default class AuthenticateUserService{
 
     delete user.password;
 
-    const token = sign({},'61fd58e6c066eb9d0a2506596a619c92',{
+    const token = sign({},authConfig.jtw.secret,{
       subject: user.id,
-      expiresIn: '1d',
+      expiresIn: authConfig.jtw.expiresIn,
     });
 
 
