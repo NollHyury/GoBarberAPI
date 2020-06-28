@@ -1,9 +1,10 @@
-import Appointment from '../infra/typeorm/entities/Appointment';
-import AppointmentsRepository from '../repositories/AppointmentsRepository';
 import {startOfHour} from 'date-fns';
 import {getCustomRepository} from 'typeorm'
 
-import AppError from '../../../shared/errors/AppError';
+import Appointment from '../infra/typeorm/entities/Appointment';
+import AppointmentsRepository from '../repositories/AppointmentsRepository';
+
+import AppError from '@shared/errors/AppError';
 
 /**
  * [X] Recebimento das informações
@@ -14,7 +15,6 @@ interface Request {
   provider_id: string;
   date: Date;
 }
-
 
 /***
  * Dependecy Inversion (SOLID)
