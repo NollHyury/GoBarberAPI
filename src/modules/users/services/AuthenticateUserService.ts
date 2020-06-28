@@ -1,7 +1,7 @@
-import {getRepository} from 'typeorm';
 import {compare} from 'bcryptjs'
 import {sign} from 'jsonwebtoken';
 import authConfig from '@config/auth';
+import {injectable, inject} from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
@@ -18,8 +18,12 @@ interface IResponse{
   token: string;
 }
 
+@injectable()
 export default class AuthenticateUserService{
-  constructor( private usersRepository : IUsersRepository){}
+  constructor(
+    @inject('UsersRepository')
+    private usersRepository : IUsersRepository,
+    ){}
 
   public async execute({email, password} : IRequest) :Promise<IResponse>{
 
