@@ -1,10 +1,11 @@
+import 'reflect-metadata';
+import { injectable, inject } from 'tsyringe';
+
 import path from 'path';
 import IUsersRepository from '../repositories/IUsersRepository';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import AppError from '@shared/errors/AppError';
 import IUserTokensRepository from '../repositories/IUserTokensRepository';
-
-import { injectable, inject } from 'tsyringe';
 
 
 interface IRequest {
