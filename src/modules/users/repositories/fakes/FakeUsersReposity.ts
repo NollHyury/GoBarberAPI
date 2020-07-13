@@ -5,10 +5,8 @@ import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
 import {uuid} from 'uuidv4';
 
 
-class UsersRepository implements IUserRepository{
+class FakeUsersRepository implements IUserRepository{
   private users: User[] = [];
-
-
 
   public async findByEmail(email: string) : Promise<User | undefined>{
     const user = this.users.find(user=> user.email === email);
@@ -41,4 +39,4 @@ class UsersRepository implements IUserRepository{
 }
 
 
-export default UsersRepository;
+export default FakeUsersRepository;
