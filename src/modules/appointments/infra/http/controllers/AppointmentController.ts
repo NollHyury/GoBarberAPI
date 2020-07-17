@@ -1,4 +1,3 @@
-import Appointment from '../../typeorm/entities/Appointment';
 import { Request, Response } from 'express';
 import { parseISO } from 'date-fns';
 import { container } from 'tsyringe';
