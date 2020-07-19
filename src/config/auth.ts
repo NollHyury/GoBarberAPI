@@ -1,6 +1,6 @@
 export default {
   jtw: {
-    secret: '61fd58e6c066eb9d0a2506596a619c92',
+    secret: process.env.APP_SECRET,
     expiresIn: '1d'
   }
 }
