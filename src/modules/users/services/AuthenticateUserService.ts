@@ -1,7 +1,6 @@
-import {sign} from 'jsonwebtoken';
 import authConfig from '@config/auth';
 import {injectable, inject} from 'tsyringe';
-
+import {sign} from 'jsonwebtoken';
 import AppError from '@shared/errors/AppError';
 
 import User from '../infra/typeorm/entities/User'
@@ -44,12 +43,13 @@ export default class AuthenticateUserService{
 
     delete user.password;
 
+    if(!authConfig.jtw.secret)
+      throw new AppError('Auth jwt secret is unavailable',501)
+
     const token = sign({},authConfig.jtw.secret,{
       subject: user.id,
       expiresIn: authConfig.jtw.expiresIn,
     });
-
-
 
     return {
       user,
