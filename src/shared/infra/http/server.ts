@@ -13,13 +13,15 @@ import AppError from '@shared/errors/AppError';
 import '@shared/infra/typeorm';
 import '@shared/container/index';
 
+import rateLimiter from './middlewares/rateLimiter'
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(rateLimiter)
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);
-
 app.use(errors());
 
 app.use(
