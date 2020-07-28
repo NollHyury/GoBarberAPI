@@ -35,6 +35,7 @@ export default class ListProviderAppointmentsService {
       cacheKey,
     );
 
+
     if (!appointments) {
       appointments = await this.appointmentsRepository.findAllInDayFromProvider(
         {
